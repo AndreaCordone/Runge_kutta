@@ -10,23 +10,37 @@ class runge_kutta {
 	public:
 
 // Default constructor 		
-runge_kutta (unsigned int steps_number, double initial_cond,double initial_time, double end_time, std::function<double (double,double)> f ) ; 
+runge_kutta (double step, double initial_cond,double initial_time, double end_time, std::function<double (double,double)> f ) ; 
 
 void method ( const std::string & methods )  ; 
+
+
+double evolve_one_step( ) ; 
+
+	
 void solve ( ) ; 
+
 std::pair<std::vector<double>,std::vector<double>> get_result ( ) ; 
 
 	private:
 	
-		// Initial condition
-		double y0 ; 
+		// Solution
+		double y ; 	
 		
-		// Step size 
-		unsigned int n ;
+		// Time vector 
+		std::vector<double> time ; 		
 	
+		// solution 
+		std::vector<double> sol ; 
 
+
+		// Step size 
+		double step ; 
+
+
+	
 		// Initial_time t0 
-		double t0  ; 
+		double t ; 
 
 		//End Time tend
 		double tend ; 
@@ -40,21 +54,16 @@ std::pair<std::vector<double>,std::vector<double>> get_result ( ) ;
 		// Butcher Table 
 		std::vector<std::vector<double>> a ; 
 		
-		// Solution vetor 
-		std::vector<double> y ; 
 
+		//Vector of k 
+		std::vector<double> k ; 
 
-		// Step size 
-		double step ; 
-
-	        // Butcher c elements
+		// Butcher c elements
 		std::vector<double> c ; 
 	
 		// Butcher b elements 
 		std::vector<double> b ; 	
 		
-		//time vector 
-		std::vector<double> t ; 
 
 } ; 
 
